@@ -1,6 +1,7 @@
 using Flunt.Notifications;
 using Todo.Domain.Commands;
 using Todo.Domain.Commands.Contracts;
+using Todo.Domain.Entitites;
 using Todo.Domain.Handlers.Contracts;
 using Todo.Domain.Repositories;
 
@@ -20,15 +21,14 @@ namespace Todo.Domain.Handlers
             //FAIL FAST VALIDATION
             command.Validate();
             if (command.Invalid)
-                return new GerenicCommandResult(
-                    false,
-                    "Tarefa invalida!",
-                    command.Notifications);
+                return new GerenicCommandResult(false, "Tarefa invalida!", command.Notifications);
+            //gera todo item
+            var todo = new TodoItem(command.Title, command.User, command.Date);
 
+            //salvar tarefa no banco
+            _repository.Create(todo);
 
-            //salver um todo no banco
-
-            //notificar o usuario
+            return new GerenicCommandResult(true, "Tarefa Salva", todo);
         }
     }
 }
