@@ -26,21 +26,21 @@ namespace Todo.Domain.Handlers
             //FAIL FAST VALIDATION
             command.Validate();
             if (command.Invalid)
-                return new GerenicCommandResult(false, "Tarefa invalida!", command.Notifications);
+                return new GenericCommandResult(false, "Tarefa invalida!", command.Notifications);
             //gera todo item
             var todo = new TodoItem(command.Title, command.User, command.Date);
 
             //salvar tarefa no banco
             _repository.Create(todo);
 
-            return new GerenicCommandResult(true, "Tarefa Salva", todo);
+            return new GenericCommandResult(true, "Tarefa Salva", todo);
         }
 
         public ICommandResult Handle(UpdateTodoCommand command)
         {
             //fail fast validation
             if (command.Invalid)
-                return new GerenicCommandResult(false, "Ops, parece que sua tarefa esta incorreta", command.Notifications);
+                return new GenericCommandResult(false, "Ops, parece que sua tarefa esta incorreta", command.Notifications);
             //recupera todo do banco
             var todo = _repository.GetById(command.Id, command.User);
             //alterar titulo
@@ -49,28 +49,28 @@ namespace Todo.Domain.Handlers
             _repository.Update(todo);
 
             //retorna resultado
-            return new GerenicCommandResult(true, "titulo alterado com sucsso", todo);
+            return new GenericCommandResult(true, "titulo alterado com sucsso", todo);
         }
 
         public ICommandResult Handle(MarkTodoAsDoneCommand command)
         {
             if (command.Invalid)
-                return new GerenicCommandResult(false, "Ops, parece que sua tarefa está incorreta!", command.Notifications);
+                return new GenericCommandResult(false, "Ops, parece que sua tarefa está incorreta!", command.Notifications);
             var todo = _repository.GetById(command.Id, command.User);
             todo.MarkAsDone();
             _repository.Update(todo);
-            return new GerenicCommandResult(true, "Tarefa Completa!", todo);
+            return new GenericCommandResult(true, "Tarefa Completa!", todo);
         }
 
         public ICommandResult Handle(MarkTodoAsUndoneCommand command)
         {
             if (command.Invalid)
-                return new GerenicCommandResult(false, "Ops, sua tarefa está incorreta!", command.Notifications);
+                return new GenericCommandResult(false, "Ops, sua tarefa está incorreta!", command.Notifications);
 
             var todo = _repository.GetById(command.Id, command.User);
             todo.MarkAsUndone();
             _repository.Update(todo);
-            return new GerenicCommandResult(true, "Tarefa atualizada com sucesso!", todo);
+            return new GenericCommandResult(true, "Tarefa atualizada com sucesso!", todo);
         }
     }
 }

@@ -1,13 +1,13 @@
 namespace Todo.Domain.Commands.Contracts
 {
-    public class GerenicCommandResult : ICommandResult
+    public class GenericCommandResult : ICommandResult
     {
 
-        public GerenicCommandResult()
+        public GenericCommandResult()
         {
 
         }
-        public GerenicCommandResult(bool sucess, string message, object data)
+        public GenericCommandResult(bool sucess, string message, object data)
         {
             Sucess = sucess;
             Message = message;
