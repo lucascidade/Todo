@@ -1,5 +1,5 @@
 using Todo.Domain.Entitites;
-using System.Collections.Generic;
+using System;
 namespace Todo.Domain.Repositories
 {
     public interface ITodoRepository

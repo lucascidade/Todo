@@ -8,7 +8,7 @@ namespace Todo.Domain.Commands
     public class CreateTodoCommand : Notifiable, ICommand
     {
         public CreateTodoCommand() { }
-        public CreateTodoCommand(string? title, string? user, DateTime date)
+        public CreateTodoCommand(string title, string user, DateTime date)
         {
             Title = title;
             User = user;
