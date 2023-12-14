@@ -19,14 +19,14 @@ namespace Todo.Domain.Tests.HandlerTests
         [TestMethod]
         public void DadoUmCommandoInvalidoDeveIntrerromperAExecucao()
         {
-            var result = (GerenicCommandResult)_handler.Handle(_invalidCommand);
+            var result = (GenericCommandResult)_handler.Handle(_invalidCommand);
             Assert.AreEqual(result.Sucess, false);
         }
 
         [TestMethod]
         public void DadoUmCommandoValidoDeveCriarATarefa()
         {
-            var result = (GerenicCommandResult)_handler.Handle(_validCommand);
+            var result = (GenericCommandResult)_handler.Handle(_validCommand);
             Assert.AreEqual(result.Sucess, true);
         }
     }

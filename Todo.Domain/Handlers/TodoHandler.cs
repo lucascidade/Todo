@@ -1,5 +1,3 @@
-using System.Data;
-using System.Net.Mail;
 using Flunt.Notifications;
 using Todo.Domain.Commands;
 using Todo.Domain.Commands.Contracts;
